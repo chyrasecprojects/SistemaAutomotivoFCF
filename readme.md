@@ -1,28 +1,33 @@
 Sistema de Gestão de Estoque de Veículos
 
-API REST desenvolvida em Java com Spring Boot e MySQL para gerenciamento de marcas e veículos.
+Projeto desenvolvido em Java utilizando Spring Boot e MySQL, seguindo arquitetura em camadas (controller, service, repository e model). O sistema permite a gestão de marcas e veículos, incluindo cadastro, consulta, atualização e remoção.
 
-Funcionalidades
+Estrutura do Projeto
+src/main/java/com/exemplo/veiculos
+ ├── controller
+ ├── model
+ ├── repository
+ ├── service
+ └── VeiculosApiApplication.java
 
-Cadastro de marcas
 
-Cadastro de veículos
+model: contém as entidades Marca e Veiculo.
 
-Listagem geral
+repository: interfaces que acessam o banco utilizando Spring Data JPA.
 
-Filtros por marca, ano, status e preço
+service: camada com regras de negócio e chamadas ao repository.
 
-Atualização de dados
+controller: expõe as operações CRUD através de endpoints REST.
 
-Remoção de veículos
-
-API REST seguindo padrão CRUD
+application.properties: configurações de conexão com o MySQL.
 
 Tecnologias Utilizadas
 
-Java 17+
+Java 17
 
 Spring Boot
+
+Spring Web
 
 Spring Data JPA
 
@@ -32,41 +37,21 @@ Maven
 
 Lombok
 
-Como Executar:
-Clonar o repositório
-git clone https://github.com/SEU-USUARIO/veiculos-api.git
+Banco de Dados
 
-2. Criar o banco de dados MySQL
-CREATE DATABASE veiculosdb;
+O banco utiliza duas tabelas principais: marca e veiculo, relacionadas por chave estrangeira.
+O script completo está no arquivo schema.sql.
 
+Executando o Projeto
 
-Ou utilizar o arquivo schema.sql.
+Criar o banco veiculosdb.
 
-Configurar o arquivo application.properties
+Configurar usuário e senha no application.properties.
 
-Local: src/main/resources/application.properties
+Executar com:
 
-spring.datasource.url=jdbc:mysql://localhost:3306/veiculosdb
-spring.datasource.username=root
-spring.datasource.password=123456
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-
-Executar o projeto
 mvn spring-boot:run
 
-Endpoints
-Marcas
-Método	Rota	Descrição
-POST	/marcas	Cadastrar marca
-GET	/marcas	Listar marcas
-Veículos
-Método	Rota	Descrição
-POST	/veiculos	Cadastrar veículo
-GET	/veiculos	Listar veículos
-PUT	/veiculos	Atualizar veículo
-DELETE	/veiculos/{id}	Remover veículo
-GET	/veiculos/marca/{nome}	Filtrar por marca
-GET	/veiculos/ano/{ano}	Filtrar por ano
-GET	/veiculos/status/{status}	Filtrar por status
-GET	/veiculos/preco?min=&max=	Filtrar por faixa de preço
+Código Fonte
+
+O código completo das classes, controllers, serviços e repositórios está disponível na pasta src/main/java.
